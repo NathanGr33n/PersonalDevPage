@@ -1,59 +1,49 @@
-# PersonalDevPage
+# Personal Portfolio Website
 
-A personal development portfolio website showcasing my projects, skills, and experience.
-
-## Overview
-
-This repository contains the source code for my personal developer portfolio website. It serves as a central hub to showcase my work, technical skills, and professional journey.
+A modern, responsive developer portfolio built with vanilla HTML, CSS, and JavaScript. Designed for optimal performance and easy deployment.
 
 ## Features
 
-- 🎨 Modern, responsive design
-- 📱 Mobile-first approach
-- ⚡ Fast loading and optimized performance
-- 🔗 Links to projects and repositories
-- 📧 Contact information and social links
+- Dark-mode design with smooth animations
+- Fully responsive across all devices
+- SEO optimized with meta tags
+- Fast loading with minimal dependencies
+- Easy deployment to GitHub Pages, Netlify, or Vercel
 
-## Tech Stack
-
-*To be determined based on project requirements*
-
-## Getting Started
+## Quick Start
 
 ```bash
-# Clone the repository
-git clone https://github.com/YOUR_USERNAME/PersonalDevPage.git
+git clone https://github.com/NathanGr33n/PersonalDevPage.git
 cd PersonalDevPage
-
-# Install dependencies (when available)
-# npm install
-
-# Start development server (when available)
-# npm run dev
 ```
+
+Open `index.html` in a local server or deploy directly to your hosting platform.
 
 ## Project Structure
 
 ```
 PersonalDevPage/
-├── README.md
-├── .gitignore
-└── (more files to be added)
+├── index.html          # Main HTML structure
+├── styles.css          # All styling and responsive design
+├── script.js           # JavaScript functionality
+├── assets/             # Images and media files
+└── README.md
 ```
+
+## Customization
+
+1. **Personal Info**: Update name, tagline, and contact details in `index.html`
+2. **Skills**: Modify skill tags to match your expertise
+3. **Projects**: Add your projects with descriptions and links
+4. **Experience**: Update work history and achievements
+5. **Profile Photo**: Replace placeholder in `assets/` directory
 
 ## Deployment
 
-This site will be deployed using free hosting services such as:
-- Vercel
-- Netlify
-- GitHub Pages
-
-## Contact
-
-- **Author:** Your Name
-- **Email:** your.email@example.com
-- **GitHub:** [@yourusername](https://github.com/yourusername)
+- **GitHub Pages**: Enable in repository settings
+- **Netlify**: Drag and drop project folder
+- **Vercel**: Import from GitHub
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+MIT License - see [LICENSE](LICENSE) for details.

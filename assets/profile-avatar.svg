@@ -1,0 +1,29 @@
+<svg width="250" height="250" viewBox="0 0 250 250" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <!-- Circular clipping path -->
+    <clipPath id="circle-clip">
+      <circle cx="125" cy="125" r="120" />
+    </clipPath>
+    
+    <!-- Gradient border overlay -->
+    <linearGradient id="border-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6366f1;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#4f46e5;stop-opacity:0.9" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background circle -->
+  <circle cx="125" cy="125" r="125" fill="url(#border-gradient)" />
+  
+  <!-- Your actual profile image -->
+  <image x="5" y="5" width="240" height="240" 
+         href="profile_avatar.JPG" 
+         clip-path="url(#circle-clip)" 
+         preserveAspectRatio="xMidYMid slice" />
+  
+  <!-- Subtle overlay ring for professional look -->
+  <circle cx="125" cy="125" r="120" 
+          fill="none" 
+          stroke="rgba(99, 102, 241, 0.3)" 
+          stroke-width="2" />
+</svg>

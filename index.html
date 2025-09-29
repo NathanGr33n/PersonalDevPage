@@ -9,6 +9,55 @@
     <meta property="og:description" content="Building modern, scalable software with precision and creativity.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://NathanGr33n.github.io">
+    <meta property="og:image" content="https://NathanGr33n.github.io/assets/profile_avatar_400.webp">
+    
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Nathan Green",
+      "jobTitle": "Software Engineer",
+      "description": "Software Engineer specializing in modern, scalable applications. Expert in Python, C#, JavaScript, and enterprise SaaS solutions.",
+      "url": "https://NathanGr33n.github.io",
+      "image": "https://NathanGr33n.github.io/assets/profile_avatar_400.webp",
+      "sameAs": [
+        "https://github.com/NathanGr33n",
+        "https://linkedin.com/in/nathan-green-958898252/",
+        "https://github.com/nkg-systems"
+      ],
+      "knowsAbout": [
+        "Python", "C#", "JavaScript", "TypeScript", "Kotlin", "C++", "SQL",
+        "FastAPI", "Flask", ".NET", "React", "Android", "Docker", "Git",
+        "Enterprise SaaS", "Cloud Architecture", "Database Design", "API Development", "DevOps"
+      ],
+      "worksFor": {
+        "@type": "Organization",
+        "name": "NKG Systems",
+        "url": "https://github.com/nkg-systems"
+      },
+      "alumniOf": {
+        "@type": "EducationalOrganization",
+        "name": "Computer Science Technology Coursework"
+      },
+      "email": "mailto:nathan.green.223@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "US"
+      }
+    }
+    </script>
+    
+    <!-- Favicon and App Icons -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="theme-color" content="#6366f1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Nathan Green">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -54,7 +103,22 @@
                     <p>Experienced in full-stack development, from database optimization to user interface design, with a focus on scalable, maintainable solutions that deliver measurable impact.</p>
                 </div>
                 <div class="about-image">
-                    <img src="assets/profile_avatar.JPG" alt="Nathan Green" class="profile-img">
+                    <picture>
+                        <source media="(max-width: 480px)" 
+                                srcset="assets/profile_avatar_150.webp" 
+                                type="image/webp">
+                        <source media="(max-width: 480px)" 
+                                srcset="assets/profile_avatar_250.jpg">
+                        <source media="(min-width: 481px)" 
+                                srcset="assets/profile_avatar_250.webp, assets/profile_avatar_400.webp 2x" 
+                                type="image/webp">
+                        <img src="assets/profile_avatar_250.jpg" 
+                             alt="Nathan Green - Software Engineer" 
+                             class="profile-img"
+                             width="250" 
+                             height="250"
+                             loading="lazy">
+                    </picture>
                 </div>
             </div>
         </div>
@@ -268,5 +332,8 @@
 </section>
 
     <script src="script.js"></script>
+    
+    <!-- Analytics (disabled by default - edit analytics.js to enable) -->
+    <script src="analytics.js"></script>
 </body>
 </html>

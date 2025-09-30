@@ -76,6 +76,22 @@
                 <li><a href="#experience" class="nav-link">Experience</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
+            <div class="nav-controls">
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                    <svg class="theme-icon theme-icon-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="5"/>
+                        <path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+                    </svg>
+                    <svg class="theme-icon theme-icon-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                    </svg>
+                </button>
+                <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </div>
         </div>
     </nav>
 
@@ -172,8 +188,18 @@
     <section class="projects" id="projects">
         <div class="container">
             <h2 class="section-title">Featured Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card">
+            
+            <!-- Project Filters -->
+            <div class="project-filters">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="python">Python</button>
+                <button class="filter-btn" data-filter="javascript">JavaScript</button>
+                <button class="filter-btn" data-filter="typescript">TypeScript</button>
+                <button class="filter-btn" data-filter="csharp">C#</button>
+            </div>
+            
+            <div class="projects-grid" id="projects-grid">
+                <div class="project-card" data-categories="typescript nodejs cli">
                     <div class="project-header">
                         <h3>Advanced CLI Development Tool</h3>
                         <div class="project-links">
@@ -189,7 +215,7 @@
                     </div>
                 </div>
                 
-                <div class="project-card">
+                <div class="project-card" data-categories="python email backend">
                     <div class="project-header">
                         <h3>Python Email Integration System</h3>
                         <div class="project-links">
@@ -205,7 +231,7 @@
                     </div>
                 </div>
                 
-                <div class="project-card">
+                <div class="project-card" data-categories="javascript framework ui">
                     <div class="project-header">
                         <h3>Sh4d0w UI Framework</h3>
                         <div class="project-links">
@@ -221,7 +247,7 @@
                     </div>
                 </div>
                 
-                <div class="project-card">
+                <div class="project-card" data-categories="python cli productivity">
                     <div class="project-header">
                         <h3>Python Kanban Board System</h3>
                         <div class="project-links">
@@ -296,36 +322,90 @@
   <div class="container">
     <div class="contact-content">
       <h2 class="section-title">Let's Build Something Great Together</h2>
-      <p class="contact-description">Open to software engineering roles and impact-driven projects. Reach out below.</p>
-      <div class="contact-buttons">
-        <a href="mailto:nathan.green.223@gmail.com" class="contact-btn">
-          <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-            <polyline points="22,6 12,13 2,6"></polyline>
-          </svg>
-          Email
-        </a>
-        <a href="https://www.linkedin.com/in/nathan-green-958898252/" class="contact-btn" target="_blank" rel="noopener">
-          <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-            <rect x="2" y="9" width="4" height="12"></rect>
-            <circle cx="4" cy="4" r="2"></circle>
-          </svg>
-          LinkedIn
-        </a>
-        <a href="https://github.com/NathanGr33n" class="contact-btn" target="_blank" rel="noopener">
-          <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-          </svg>
-          GitHub
-        </a>
-        <!-- Optional: org link -->
-        <a href="https://github.com/nkg-systems" class="contact-btn" target="_blank" rel="noopener">
-          <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-            <path d="M12 1l3 5 6 .9-4.3 4.2 1 6-5.2-2.8L7.3 17l1-6L4 6.9 10 6z"></path>
-          </svg>
-          NKG Systems
-        </a>
+      <p class="contact-description">Open to software engineering roles and impact-driven projects. Send me a message below.</p>
+      
+      <!-- Contact Form -->
+      <form class="contact-form" id="contact-form" name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
+        <!-- Honeypot field for spam protection -->
+        <input type="hidden" name="bot-field" />
+        <input type="hidden" name="form-name" value="contact" />
+        
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="name" class="form-label">Name *</label>
+            <input type="text" id="name" name="name" class="form-input" required 
+                   autocomplete="name" placeholder="Your full name">
+            <span class="form-error" id="name-error"></span>
+          </div>
+          
+          <div class="form-group">
+            <label for="email" class="form-label">Email *</label>
+            <input type="email" id="email" name="email" class="form-input" required 
+                   autocomplete="email" placeholder="your.email@example.com">
+            <span class="form-error" id="email-error"></span>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="subject" class="form-label">Subject</label>
+          <input type="text" id="subject" name="subject" class="form-input" 
+                 placeholder="What would you like to discuss?">
+        </div>
+        
+        <div class="form-group">
+          <label for="message" class="form-label">Message *</label>
+          <textarea id="message" name="message" class="form-textarea" required 
+                    rows="5" placeholder="Tell me about your project, opportunity, or question..."></textarea>
+          <span class="form-error" id="message-error"></span>
+        </div>
+        
+        <div class="form-submit">
+          <button type="submit" class="btn btn-primary form-submit-btn" id="submit-btn">
+            <span class="btn-text">Send Message</span>
+            <span class="btn-loading" style="display: none;">
+              <svg class="loading-spinner" width="20" height="20" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none" stroke-dasharray="32" stroke-dashoffset="32">
+                  <animate attributeName="stroke-dasharray" dur="1s" values="0 32;16 16;32 0;16 16;0 32" repeatCount="indefinite"/>
+                </circle>
+              </svg>
+              Sending...
+            </span>
+          </button>
+        </div>
+      </form>
+      
+      <!-- Social Links -->
+      <div class="contact-social">
+        <p class="social-text">Or connect with me on:</p>
+        <div class="social-links">
+          <a href="mailto:nathan.green.223@gmail.com" class="social-link" title="Email">
+            <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            <span class="sr-only">Email</span>
+          </a>
+          <a href="https://www.linkedin.com/in/nathan-green-958898252/" class="social-link" target="_blank" rel="noopener" title="LinkedIn">
+            <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+              <rect x="2" y="9" width="4" height="12"></rect>
+              <circle cx="4" cy="4" r="2"></circle>
+            </svg>
+            <span class="sr-only">LinkedIn</span>
+          </a>
+          <a href="https://github.com/NathanGr33n" class="social-link" target="_blank" rel="noopener" title="GitHub">
+            <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+            </svg>
+            <span class="sr-only">GitHub</span>
+          </a>
+          <a href="https://github.com/nkg-systems" class="social-link" target="_blank" rel="noopener" title="NKG Systems">
+            <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 1l3 5 6 .9-4.3 4.2 1 6-5.2-2.8L7.3 17l1-6L4 6.9 10 6z"></path>
+            </svg>
+            <span class="sr-only">NKG Systems</span>
+          </a>
+        </div>
       </div>
     </div>
   </div>

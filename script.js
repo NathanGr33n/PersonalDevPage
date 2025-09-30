@@ -1,12 +1,16 @@
 // DOM Content Loaded
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize all functionality
-    initializeNavigation();
-    initializeScrollAnimations();
-    initializeSmoothScrolling();
-    initializeActiveNavigation();
-    initializeProjectCardAnimations();
-    initializeTypingEffect();
+        initializeNavigation();
+        initializeScrollAnimations();
+        initializeSmoothScrolling();
+        initializeActiveNavigation();
+        initializeProjectCardAnimations();
+        initializeTypingEffect();
+        initializeContactForm();
+        initializeThemeToggle();
+        initializeMobileMenu();
+        initializeProjectFiltering();
 });
 
 // Navigation functionality
@@ -169,24 +173,167 @@ function initializeParallaxEffect() {
     });
 }
 
-// Contact form handling (if form is added later)
+// Contact form handling with validation and submission
 function initializeContactForm() {
-    const contactForm = document.getElementById('contact-form');
-    
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
+    try {
+        const contactForm = document.getElementById('contact-form');
+        if (!contactForm) {
+            console.warn('Contact form not found');
+            return;
+        }
+
+        const submitBtn = document.getElementById('submit-btn');
+        const btnText = submitBtn.querySelector('.btn-text');
+        const btnLoading = submitBtn.querySelector('.btn-loading');
+        
+        // Form validation
+        const validators = {
+            name: (value) => {
+                if (!value.trim()) return 'Name is required';
+                if (value.trim().length < 2) return 'Name must be at least 2 characters';
+                if (value.trim().length > 100) return 'Name must be less than 100 characters';
+                return null;
+            },
+            email: (value) => {
+                if (!value.trim()) return 'Email is required';
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(value)) return 'Please enter a valid email address';
+                return null;
+            },
+            subject: (value) => {
+                if (value.trim().length > 200) return 'Subject must be less than 200 characters';
+                return null;
+            },
+            message: (value) => {
+                if (!value.trim()) return 'Message is required';
+                if (value.trim().length < 10) return 'Message must be at least 10 characters';
+                if (value.trim().length > 2000) return 'Message must be less than 2000 characters';
+                return null;
+            }
+        };
+        
+        // Real-time validation
+        Object.keys(validators).forEach(fieldName => {
+            const field = document.getElementById(fieldName);
+            const errorElement = document.getElementById(`${fieldName}-error`);
+            
+            if (field && errorElement) {
+                field.addEventListener('blur', () => validateField(fieldName, field.value, errorElement));
+                field.addEventListener('input', () => {
+                    if (errorElement.textContent) {
+                        validateField(fieldName, field.value, errorElement);
+                    }
+                });
+            }
+        });
+        
+        function validateField(fieldName, value, errorElement) {
+            try {
+                const error = validators[fieldName](value);
+                if (error) {
+                    errorElement.textContent = error;
+                    errorElement.style.opacity = '1';
+                    return false;
+                } else {
+                    errorElement.textContent = '';
+                    errorElement.style.opacity = '0';
+                    return true;
+                }
+            } catch (e) {
+                console.error('Validation error:', e);
+                return false;
+            }
+        }
+        
+        function validateForm() {
+            let isValid = true;
+            
+            Object.keys(validators).forEach(fieldName => {
+                const field = document.getElementById(fieldName);
+                const errorElement = document.getElementById(`${fieldName}-error`);
+                
+                if (field && errorElement) {
+                    if (!validateField(fieldName, field.value, errorElement)) {
+                        isValid = false;
+                    }
+                }
+            });
+            
+            return isValid;
+        }
+        
+        // Form submission
+        contactForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             
-            // Handle form submission
-            const formData = new FormData(this);
-            const data = Object.fromEntries(formData);
-            
-            // You can integrate with a service like Formspree, Netlify Forms, etc.
-            console.log('Form submitted:', data);
-            
-            // Show success message
-            showNotification('Message sent successfully!', 'success');
+            try {
+                // Validate form
+                if (!validateForm()) {
+                    showNotification('Please fix the errors above', 'error');
+                    return;
+                }
+                
+                // Show loading state
+                submitBtn.disabled = true;
+                btnText.style.display = 'none';
+                btnLoading.style.display = 'inline-flex';
+                
+                // Prepare form data
+                const formData = new FormData(contactForm);
+                const data = Object.fromEntries(formData);
+                
+                // Remove honeypot and form-name from display data
+                delete data['bot-field'];
+                delete data['form-name'];
+                
+                console.log('Form submission data:', data);
+                
+                // Submit to Netlify (or fallback to mailto)
+                const response = await fetch('/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: new URLSearchParams(formData).toString()
+                });
+                
+                if (response.ok) {
+                    showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
+                    contactForm.reset();
+                    
+                    // Clear any error messages
+                    document.querySelectorAll('.form-error').forEach(error => {
+                        error.textContent = '';
+                        error.style.opacity = '0';
+                    });
+                } else {
+                    throw new Error('Network response was not ok');
+                }
+                
+            } catch (error) {
+                console.error('Form submission error:', error);
+                
+                // Fallback to mailto
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const subject = document.getElementById('subject').value || 'Contact from Portfolio';
+                const message = document.getElementById('message').value;
+                
+                const mailtoUrl = `mailto:nathan.green.223@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`From: ${name} (${email})\n\nMessage:\n${message}`)}`;
+                window.location.href = mailtoUrl;
+                
+                showNotification('Opening your email client...', 'info');
+                
+            } finally {
+                // Reset button state
+                setTimeout(() => {
+                    submitBtn.disabled = false;
+                    btnText.style.display = 'inline';
+                    btnLoading.style.display = 'none';
+                }, 2000);
+            }
         });
+        
+    } catch (error) {
+        console.error('Contact form initialization failed:', error);
     }
 }
 
@@ -250,22 +397,236 @@ function initializeOptimizedScrollHandlers() {
     window.addEventListener('scroll', debouncedScrollHandler);
 }
 
-// Theme switching functionality (optional enhancement)
+// Theme switching functionality
 function initializeThemeToggle() {
-    // This could be used for light/dark theme toggle in the future
-    const themeToggle = document.getElementById('theme-toggle');
-    
-    if (themeToggle) {
-        themeToggle.addEventListener('click', function() {
-            document.body.classList.toggle('light-theme');
-            localStorage.setItem('theme', document.body.classList.contains('light-theme') ? 'light' : 'dark');
-        });
+    try {
+        const themeToggle = document.getElementById('theme-toggle');
         
-        // Load saved theme
+        if (!themeToggle) {
+            console.warn('Theme toggle button not found');
+            return;
+        }
+        
+        // Load saved theme or detect system preference
         const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'light') {
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedTheme === 'light' || (savedTheme === null && !systemPrefersDark)) {
             document.body.classList.add('light-theme');
         }
+        
+        // Theme toggle click handler
+        themeToggle.addEventListener('click', function() {
+            try {
+                const isCurrentlyLight = document.body.classList.contains('light-theme');
+                
+                if (isCurrentlyLight) {
+                    document.body.classList.remove('light-theme');
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    document.body.classList.add('light-theme');
+                    localStorage.setItem('theme', 'light');
+                }
+                
+                // Update analytics if available
+                if (window.portfolioAnalytics) {
+                    window.portfolioAnalytics.trackEvent('theme_toggle', {
+                        new_theme: isCurrentlyLight ? 'dark' : 'light'
+                    });
+                }
+            } catch (error) {
+                console.error('Error toggling theme:', error);
+            }
+        });
+        
+        // Listen for system theme changes
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+            if (!localStorage.getItem('theme')) {
+                if (e.matches) {
+                    document.body.classList.remove('light-theme');
+                } else {
+                    document.body.classList.add('light-theme');
+                }
+            }
+        });
+        
+    } catch (error) {
+        console.error('Theme toggle initialization failed:', error);
+    }
+}
+
+// Mobile menu functionality
+function initializeMobileMenu() {
+    try {
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        if (!mobileMenuToggle || !navMenu) {
+            console.warn('Mobile menu elements not found');
+            return;
+        }
+        
+        // Toggle mobile menu
+        mobileMenuToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            try {
+                const isActive = mobileMenuToggle.classList.contains('active');
+                
+                if (isActive) {
+                    // Close menu
+                    mobileMenuToggle.classList.remove('active');
+                    navMenu.classList.remove('active');
+                    mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                    document.body.style.overflow = '';
+                } else {
+                    // Open menu
+                    mobileMenuToggle.classList.add('active');
+                    navMenu.classList.add('active');
+                    mobileMenuToggle.setAttribute('aria-expanded', 'true');
+                    document.body.style.overflow = 'hidden';
+                }
+            } catch (error) {
+                console.error('Error toggling mobile menu:', error);
+            }
+        });
+        
+        // Close menu when clicking nav links
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenuToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+                mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+            });
+        });
+        
+        // Close menu on window resize if desktop
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                mobileMenuToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+                mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+            }
+        });
+        
+        // Close menu on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && mobileMenuToggle.classList.contains('active')) {
+                mobileMenuToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+                mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+                mobileMenuToggle.focus();
+            }
+        });
+        
+        // Set initial aria-expanded
+        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+        
+    } catch (error) {
+        console.error('Mobile menu initialization failed:', error);
+    }
+}
+
+// Project filtering functionality
+function initializeProjectFiltering() {
+    try {
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+        
+        if (filterBtns.length === 0 || projectCards.length === 0) {
+            console.warn('Project filtering elements not found');
+            return;
+        }
+        
+        // Initialize all cards as visible
+        projectCards.forEach(card => {
+            card.classList.add('filtered-in');
+        });
+        
+        // Cache project card data for performance
+        const cardData = [];
+        projectCards.forEach(card => {
+            cardData.push({
+                element: card,
+                categories: card.getAttribute('data-categories') || ''
+            });
+        });
+        
+        // Filter button click handlers
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                try {
+                    const filter = this.getAttribute('data-filter');
+                    
+                    // Update active button
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Filter projects with animation using cached data
+                    cardData.forEach((cardInfo, index) => {
+                        const shouldShow = filter === 'all' || cardInfo.categories.includes(filter);
+                        
+                        // Add delay for staggered animation
+                        setTimeout(() => {
+                            if (shouldShow) {
+                                cardInfo.element.classList.remove('filtered-out');
+                                cardInfo.element.classList.add('filtered-in');
+                            } else {
+                                cardInfo.element.classList.remove('filtered-in');
+                                cardInfo.element.classList.add('filtered-out');
+                            }
+                        }, index * 50);
+                    });
+                    
+                    // Track filtering in analytics
+                    if (window.portfolioAnalytics) {
+                        window.portfolioAnalytics.trackEvent('project_filter', {
+                            filter_type: filter
+                        });
+                    }
+                    
+                } catch (error) {
+                    console.error('Error filtering projects:', error);
+                }
+            });
+        });
+        
+        // Keyboard navigation for filter buttons
+        filterBtns.forEach((btn, index) => {
+            btn.addEventListener('keydown', (e) => {
+                let targetIndex = index;
+                
+                switch (e.key) {
+                    case 'ArrowLeft':
+                        e.preventDefault();
+                        targetIndex = index > 0 ? index - 1 : filterBtns.length - 1;
+                        break;
+                    case 'ArrowRight':
+                        e.preventDefault();
+                        targetIndex = index < filterBtns.length - 1 ? index + 1 : 0;
+                        break;
+                    case 'Home':
+                        e.preventDefault();
+                        targetIndex = 0;
+                        break;
+                    case 'End':
+                        e.preventDefault();
+                        targetIndex = filterBtns.length - 1;
+                        break;
+                }
+                
+                if (targetIndex !== index) {
+                    filterBtns[targetIndex].focus();
+                }
+            });
+        });
+        
+    } catch (error) {
+        console.error('Project filtering initialization failed:', error);
     }
 }
 
@@ -317,10 +678,8 @@ function initializeEmailCopy() {
 // Initialize all enhancements
 function initializeEnhancements() {
     initializeOptimizedScrollHandlers();
-    initializeThemeToggle();
     initializeLoadingAnimation();
     initializeEmailCopy();
-    initializeContactForm();
     initializeParallaxEffect();
 }
 

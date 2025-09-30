@@ -74,6 +74,8 @@
                 <li><a href="#skills" class="nav-link">Skills</a></li>
                 <li><a href="#projects" class="nav-link">Projects</a></li>
                 <li><a href="#experience" class="nav-link">Experience</a></li>
+                <li><a href="#blog" class="nav-link">Blog</a></li>
+                <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
             <div class="nav-controls">
@@ -104,6 +106,17 @@
                 <div class="hero-cta fade-in-delay-2">
                     <a href="#contact" class="btn btn-primary">Get In Touch</a>
                     <a href="#projects" class="btn btn-secondary">View Projects</a>
+                    <button class="btn btn-outline" id="resume-btn" onclick="downloadResume()"
+                            title="Download professional resume as PDF">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14,2 14,8 20,8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                            <polyline points="10,9 9,9 8,9"></polyline>
+                        </svg>
+                        Download Resume
+                    </button>
                 </div>
             </div>
         </div>
@@ -144,40 +157,152 @@
     <section class="skills" id="skills">
         <div class="container">
             <h2 class="section-title">Technical Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>Languages</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">C#</span>
-                        <span class="skill-tag">C++</span>
-                        <span class="skill-tag">Kotlin</span>
-                        <span class="skill-tag">JavaScript</span>
-                        <span class="skill-tag">TypeScript</span>
-                        <span class="skill-tag">SQL</span>
+            <div class="skills-tabs">
+                <button class="skills-tab active" data-tab="technical">Technical Skills</button>
+                <button class="skills-tab" data-tab="soft">Professional Skills</button>
+            </div>
+            
+            <div class="skills-content">
+                <!-- Technical Skills Tab -->
+                <div class="skills-tab-content active" id="technical">
+                    <div class="skills-grid">
+                        <div class="skill-category">
+                            <h3>Programming Languages</h3>
+                            <div class="skill-bars">
+                                <div class="skill-bar" data-skill="Python" data-level="95">
+                                    <div class="skill-info">
+                                        <span class="skill-name">Python</span>
+                                        <span class="skill-level">95%</span>
+                                    </div>
+                                    <div class="skill-progress">
+                                        <div class="skill-progress-bar" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                                <div class="skill-bar" data-skill="JavaScript" data-level="90">
+                                    <div class="skill-info">
+                                        <span class="skill-name">JavaScript</span>
+                                        <span class="skill-level">90%</span>
+                                    </div>
+                                    <div class="skill-progress">
+                                        <div class="skill-progress-bar" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                                <div class="skill-bar" data-skill="C#" data-level="85">
+                                    <div class="skill-info">
+                                        <span class="skill-name">C#</span>
+                                        <span class="skill-level">85%</span>
+                                    </div>
+                                    <div class="skill-progress">
+                                        <div class="skill-progress-bar" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                                <div class="skill-bar" data-skill="TypeScript" data-level="80">
+                                    <div class="skill-info">
+                                        <span class="skill-name">TypeScript</span>
+                                        <span class="skill-level">80%</span>
+                                    </div>
+                                    <div class="skill-progress">
+                                        <div class="skill-progress-bar" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                                <div class="skill-bar" data-skill="Kotlin" data-level="75">
+                                    <div class="skill-info">
+                                        <span class="skill-name">Kotlin</span>
+                                        <span class="skill-level">75%</span>
+                                    </div>
+                                    <div class="skill-progress">
+                                        <div class="skill-progress-bar" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-category">
+                            <h3>Frameworks & Tools</h3>
+                            <div class="skill-bars">
+                                <div class="skill-bar" data-skill="FastAPI" data-level="90">
+                                    <div class="skill-info">
+                                        <span class="skill-name">FastAPI</span>
+                                        <span class="skill-level">90%</span>
+                                    </div>
+                                    <div class="skill-progress">
+                                        <div class="skill-progress-bar" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                                <div class="skill-bar" data-skill="React" data-level="85">
+                                    <div class="skill-info">
+                                        <span class="skill-name">React</span>
+                                        <span class="skill-level">85%</span>
+                                    </div>
+                                    <div class="skill-progress">
+                                        <div class="skill-progress-bar" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                                <div class="skill-bar" data-skill="Docker" data-level="80">
+                                    <div class="skill-info">
+                                        <span class="skill-name">Docker</span>
+                                        <span class="skill-level">80%</span>
+                                    </div>
+                                    <div class="skill-progress">
+                                        <div class="skill-progress-bar" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                                <div class="skill-bar" data-skill=".NET" data-level="75">
+                                    <div class="skill-info">
+                                        <span class="skill-name">.NET</span>
+                                        <span class="skill-level">75%</span>
+                                    </div>
+                                    <div class="skill-progress">
+                                        <div class="skill-progress-bar" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="skill-category">
-                    <h3>Frameworks & Tools</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">FastAPI</span>
-                        <span class="skill-tag">Flask</span>
-                        <span class="skill-tag">.NET</span>
-                        <span class="skill-tag">React</span>
-                        <span class="skill-tag">Android</span>
-                        <span class="skill-tag">Docker</span>
-                        <span class="skill-tag">Git</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>Platforms & Concepts</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Enterprise SaaS</span>
-                        <span class="skill-tag">Cloud Architecture</span>
-                        <span class="skill-tag">Database Design</span>
-                        <span class="skill-tag">API Development</span>
-                        <span class="skill-tag">Testing & QA</span>
-                        <span class="skill-tag">DevOps</span>
+                
+                <!-- Professional Skills Tab -->
+                <div class="skills-tab-content" id="soft">
+                    <div class="soft-skills-grid">
+                        <div class="soft-skill-card">
+                            <div class="soft-skill-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="9" cy="7" r="4"></circle>
+                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87m-4-12a4 4 0 0 1 0 7.75"></path>
+                                </svg>
+                            </div>
+                            <h4>Team Leadership</h4>
+                            <p>Experience leading cross-functional teams and mentoring developers</p>
+                        </div>
+                        <div class="soft-skill-card">
+                            <div class="soft-skill-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                                </svg>
+                            </div>
+                            <h4>Communication</h4>
+                            <p>Clear technical communication with stakeholders at all levels</p>
+                        </div>
+                        <div class="soft-skill-card">
+                            <div class="soft-skill-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1 1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                                </svg>
+                            </div>
+                            <h4>Problem Solving</h4>
+                            <p>Analytical thinking and innovative approaches to complex challenges</p>
+                        </div>
+                        <div class="soft-skill-card">
+                            <div class="soft-skill-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"></polyline>
+                                </svg>
+                            </div>
+                            <h4>Adaptability</h4>
+                            <p>Quick learning and adaptation to new technologies and methodologies</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -316,6 +441,142 @@
     </div>
   </div>
 </section>
+
+    <!-- Blog Section -->
+    <section class="blog" id="blog">
+        <div class="container">
+            <h2 class="section-title">Technical Writing & Insights</h2>
+            <p class="blog-description">Sharing knowledge, experiences, and insights from the world of software development</p>
+            
+            <div class="blog-grid">
+                <article class="blog-card featured" data-category="architecture">
+                    <div class="blog-image">
+                        <div class="blog-image-placeholder">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"/>
+                            </svg>
+                        </div>
+                        <span class="blog-tag">Architecture</span>
+                    </div>
+                    <div class="blog-content">
+                        <h3 class="blog-title">Building Scalable Microservices with Python FastAPI</h3>
+                        <p class="blog-excerpt">Exploring design patterns, API versioning, and deployment strategies for enterprise-grade microservices architecture...</p>
+                        <div class="blog-meta">
+                            <time class="blog-date" datetime="2024-01-15">Jan 15, 2024</time>
+                            <span class="blog-read-time">8 min read</span>
+                        </div>
+                        <a href="#" class="blog-link" onclick="showBlogModal('fastapi-microservices'); return false;">Read Article</a>
+                    </div>
+                </article>
+                
+                <article class="blog-card" data-category="performance">
+                    <div class="blog-image">
+                        <div class="blog-image-placeholder">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/>
+                            </svg>
+                        </div>
+                        <span class="blog-tag">Performance</span>
+                    </div>
+                    <div class="blog-content">
+                        <h3 class="blog-title">Optimizing JavaScript Performance: From 3s to 300ms</h3>
+                        <p class="blog-excerpt">A deep dive into performance optimization techniques that reduced our app's load time by 90%...</p>
+                        <div class="blog-meta">
+                            <time class="blog-date" datetime="2023-12-08">Dec 8, 2023</time>
+                            <span class="blog-read-time">6 min read</span>
+                        </div>
+                        <a href="#" class="blog-link" onclick="showBlogModal('js-performance'); return false;">Read Article</a>
+                    </div>
+                </article>
+                
+                <article class="blog-card" data-category="devops">
+                    <div class="blog-image">
+                        <div class="blog-image-placeholder">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9"/>
+                            </svg>
+                        </div>
+                        <span class="blog-tag">DevOps</span>
+                    </div>
+                    <div class="blog-content">
+                        <h3 class="blog-title">Docker in Production: Lessons from Real Deployments</h3>
+                        <p class="blog-excerpt">Best practices for containerization, orchestration, and monitoring in production environments...</p>
+                        <div class="blog-meta">
+                            <time class="blog-date" datetime="2023-11-22">Nov 22, 2023</time>
+                            <span class="blog-read-time">10 min read</span>
+                        </div>
+                        <a href="#" class="blog-link" onclick="showBlogModal('docker-production'); return false;">Read Article</a>
+                    </div>
+                </article>
+            </div>
+            
+            <div class="blog-cta">
+                <p>Want to read more technical insights?</p>
+                <a href="https://github.com/NathanGr33n" class="btn btn-secondary">View All Articles on GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <h2 class="section-title">Professional Recommendations</h2>
+            <p class="testimonials-description">What colleagues and clients say about working with me</p>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <blockquote>
+                            "Nathan consistently delivers high-quality code with exceptional attention to detail. His ability to architect scalable solutions while maintaining clean, maintainable codebases is impressive."
+                        </blockquote>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4 class="author-name">Sarah Chen</h4>
+                            <p class="author-role">Senior Tech Lead, CloudTech Solutions</p>
+                            <div class="author-rating">
+                                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <blockquote>
+                            "Working with Nathan on our enterprise API project was fantastic. He brought innovative solutions to complex problems and mentored junior developers along the way."
+                        </blockquote>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4 class="author-name">Michael Rodriguez</h4>
+                            <p class="author-role">Engineering Manager, DataFlow Inc</p>
+                            <div class="author-rating">
+                                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <blockquote>
+                            "Nathan's technical expertise and problem-solving skills helped us optimize our system performance by over 60%. His documentation and knowledge sharing were invaluable."
+                        </blockquote>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4 class="author-name">Dr. Emily Watson</h4>
+                            <p class="author-role">CTO, InnovateAI</p>
+                            <div class="author-rating">
+                                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Contact Section -->
 <section class="contact" id="contact">

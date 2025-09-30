@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
         initializeActiveNavigation();
         initializeProjectCardAnimations();
         initializeTypingEffect();
+        initializeSkillsSection();
         initializeContactForm();
         initializeThemeToggle();
         initializeMobileMenu();
@@ -627,6 +628,136 @@ function initializeProjectFiltering() {
         
     } catch (error) {
         console.error('Project filtering initialization failed:', error);
+    }
+}
+
+// Skills Section with tabs and progress bars
+function initializeSkillsSection() {
+    try {
+        // Tab functionality
+        const skillsTabs = document.querySelectorAll('.skills-tab');
+        const skillsTabContents = document.querySelectorAll('.skills-tab-content');
+        
+        if (skillsTabs.length === 0) {
+            console.warn('Skills tabs not found');
+            return;
+        }
+        
+        // Tab switching
+        skillsTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                try {
+                    const targetTab = this.getAttribute('data-tab');
+                    
+                    // Remove active from all tabs and contents
+                    skillsTabs.forEach(t => t.classList.remove('active'));
+                    skillsTabContents.forEach(content => content.classList.remove('active'));
+                    
+                    // Add active to clicked tab and corresponding content
+                    this.classList.add('active');
+                    const targetContent = document.getElementById(targetTab);
+                    if (targetContent) {
+                        targetContent.classList.add('active');
+                    }
+                    
+                    // Re-animate progress bars if technical tab is selected
+                    if (targetTab === 'technical') {
+                        setTimeout(() => {
+                            animateProgressBars();
+                        }, 200);
+                    }
+                    
+                } catch (error) {
+                    console.error('Error switching skills tabs:', error);
+                }
+            });
+        });
+        
+        // Progress bar animation function
+        function animateProgressBars() {
+            const progressBars = document.querySelectorAll('.skill-progress-bar');
+            
+            progressBars.forEach((bar, index) => {
+                const skillBar = bar.closest('.skill-bar');
+                if (!skillBar) return;
+                
+                const level = skillBar.getAttribute('data-level');
+                if (!level) return;
+                
+                // Reset width first
+                bar.style.width = '0%';
+                
+                // Animate with delay for staggered effect
+                setTimeout(() => {
+                    bar.style.width = level + '%';
+                }, index * 150);
+            });
+        }
+        
+        // Intersection Observer for animating progress bars when section comes into view
+        const skillsSection = document.querySelector('#skills');
+        if (skillsSection) {
+            const skillsObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Only animate if technical tab is active
+                        const technicalTab = document.querySelector('.skills-tab[data-tab="technical"]');
+                        if (technicalTab && technicalTab.classList.contains('active')) {
+                            setTimeout(() => {
+                                animateProgressBars();
+                            }, 300);
+                        }
+                        // Only observe once
+                        skillsObserver.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.3
+            });
+            
+            skillsObserver.observe(skillsSection);
+        }
+        
+        // Keyboard navigation for skills tabs
+        skillsTabs.forEach((tab, index) => {
+            tab.addEventListener('keydown', (e) => {
+                let targetIndex = index;
+                
+                switch (e.key) {
+                    case 'ArrowLeft':
+                        e.preventDefault();
+                        targetIndex = index > 0 ? index - 1 : skillsTabs.length - 1;
+                        break;
+                    case 'ArrowRight':
+                        e.preventDefault();
+                        targetIndex = index < skillsTabs.length - 1 ? index + 1 : 0;
+                        break;
+                    case 'Home':
+                        e.preventDefault();
+                        targetIndex = 0;
+                        break;
+                    case 'End':
+                        e.preventDefault();
+                        targetIndex = skillsTabs.length - 1;
+                        break;
+                }
+                
+                if (targetIndex !== index) {
+                    skillsTabs[targetIndex].focus();
+                    skillsTabs[targetIndex].click();
+                }
+            });
+        });
+        
+        // Add scroll-reveal animations to skill elements
+        const skillElements = document.querySelectorAll('.skill-bar, .soft-skill-card');
+        skillElements.forEach((element, index) => {
+            element.classList.add('scroll-reveal');
+            element.style.transitionDelay = `${index * 0.1}s`;
+        });
+        
+    } catch (error) {
+        console.error('Skills section initialization failed:', error);
     }
 }
 

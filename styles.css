@@ -488,10 +488,103 @@ section {
 }
 
 /* Skills Section */
+.skills {
+  background-color: var(--color-bg-tertiary);
+}
+
+/* Skills Tabs */
+.skills-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.skills-tab {
+  background: none;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+  transition: all var(--transition-medium);
+  position: relative;
+  font-family: var(--font-family);
+}
+
+.skills-tab::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--color-accent);
+  transform: scaleX(0);
+  transition: transform var(--transition-medium);
+}
+
+.skills-tab:hover {
+  color: var(--color-accent);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.skills-tab.active {
+  color: var(--color-accent);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.skills-tab.active::after {
+  transform: scaleX(1);
+}
+
+/* Skills Content */
+.skills-content {
+  margin-top: 2rem;
+}
+
+.skills-tab-content {
+  display: none;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.skills-tab-content.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: var(--spacing-xl);
+  margin-top: 2rem;
+}
+
+.skill-category {
+  background: var(--color-bg-secondary);
+  padding: 2rem;
+  border-radius: var(--border-radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all var(--transition-medium);
+}
+
+.skill-category:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  border-color: var(--color-accent-glow);
 }
 
 .skill-category h3 {
@@ -501,6 +594,158 @@ section {
   margin-bottom: var(--spacing-md);
 }
 
+/* Skill Progress Bars */
+.skill-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.skill-bar {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: var(--border-radius);
+  padding: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all var(--transition-medium);
+}
+
+.skill-bar:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--color-accent-glow);
+}
+
+.skill-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.skill-name {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  font-size: 0.95rem;
+}
+
+.skill-level {
+  font-size: 0.875rem;
+  color: var(--color-accent);
+  font-weight: var(--font-weight-medium);
+}
+
+.skill-progress {
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.skill-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-accent), var(--color-accent-light));
+  border-radius: 3px;
+  transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-progress-bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Soft Skills Grid */
+.soft-skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.soft-skill-card {
+  background: var(--color-bg-secondary);
+  padding: 2rem;
+  border-radius: var(--border-radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+  transition: all var(--transition-medium);
+  position: relative;
+  overflow: hidden;
+}
+
+.soft-skill-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-accent), var(--color-accent-light));
+  transform: scaleX(0);
+  transition: transform var(--transition-medium);
+}
+
+.soft-skill-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  border-color: var(--color-accent-glow);
+}
+
+.soft-skill-card:hover::before {
+  transform: scaleX(1);
+}
+
+.soft-skill-icon {
+  width: 3rem;
+  height: 3rem;
+  margin: 0 auto 1rem;
+  padding: 0.75rem;
+  background: rgba(99, 102, 241, 0.1);
+  border-radius: var(--border-radius-lg);
+  color: var(--color-accent);
+  transition: all var(--transition-medium);
+}
+
+.soft-skill-card:hover .soft-skill-icon {
+  background: var(--color-accent);
+  color: white;
+  transform: scale(1.1);
+}
+
+.soft-skill-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.soft-skill-card h4 {
+  color: var(--color-text-primary);
+  margin-bottom: 0.75rem;
+  font-size: 1.125rem;
+  font-weight: var(--font-weight-semibold);
+}
+
+.soft-skill-card p {
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* Legacy skill tags for backward compatibility */
 .skill-tags {
   display: flex;
   flex-wrap: wrap;
@@ -962,8 +1207,58 @@ section {
     align-items: center;
   }
   
+  /* Enhanced Skills Section Mobile */
+  .skills-tabs {
+    flex-direction: column;
+    gap: 0;
+    border-bottom: none;
+    margin: 1rem 0;
+  }
+  
+  .skills-tab {
+    border-radius: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0.75rem 1rem;
+    text-align: left;
+  }
+  
+  .skills-tab:last-child {
+    border-bottom: none;
+  }
+  
+  .skills-tab::after {
+    display: none;
+  }
+  
   .skills-grid {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .skill-category {
+    padding: 1.5rem;
+  }
+  
+  .skill-bars {
+    gap: 1.25rem;
+  }
+  
+  .skill-bar {
+    padding: 0.75rem;
+  }
+  
+  .soft-skills-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .soft-skill-card {
+    padding: 1.5rem;
+  }
+  
+  .soft-skill-icon {
+    width: 2.5rem;
+    height: 2.5rem;
   }
   
   .projects-grid {

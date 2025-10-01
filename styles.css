@@ -927,6 +927,59 @@ section {
   border: 1px solid var(--color-accent);
 }
 
+/* Project Metrics */
+.project-metrics {
+  display: flex;
+  justify-content: space-between;
+  margin-top: var(--spacing-lg);
+  padding-top: var(--spacing-md);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  z-index: 2;
+}
+
+.metric {
+  text-align: center;
+  flex: 1;
+}
+
+.metric-value {
+  display: block;
+  font-size: 1.25rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-accent);
+  margin-bottom: 0.25rem;
+}
+
+.metric-label {
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Case Study Button */
+.case-study-btn {
+  background: none;
+  border: 1px solid var(--color-accent);
+  color: var(--color-accent);
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-family);
+}
+
+.case-study-btn:hover {
+  background-color: var(--color-accent);
+  color: white;
+  transform: translateY(-1px);
+}
+
 /* Experience Section */
 .experience-timeline {
   max-width: 800px;
@@ -1007,6 +1060,312 @@ section {
 @media (max-width: 768px) {
   .experience-item {
     padding-left: var(--spacing-lg);
+  }
+}
+
+/* GitHub Integration Section */
+.github-stats {
+  background: var(--color-bg-tertiary);
+  padding: var(--spacing-3xl) 0;
+}
+
+.github-description {
+  text-align: center;
+  color: var(--color-text-secondary);
+  font-size: 1.1rem;
+  margin-bottom: var(--spacing-xl);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.github-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: var(--spacing-xl);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.github-overview,
+.github-activity,
+.github-languages {
+  background: var(--color-bg-secondary);
+  padding: var(--spacing-xl);
+  border-radius: var(--border-radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all var(--transition-medium);
+}
+
+.github-overview:hover,
+.github-activity:hover,
+.github-languages:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  border-color: var(--color-accent-glow);
+}
+
+.github-overview h3,
+.github-activity h3,
+.github-languages h3 {
+  color: var(--color-text-primary);
+  font-size: 1.25rem;
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--spacing-md);
+  text-align: center;
+}
+
+/* GitHub Stats Grid */
+.github-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+.github-stat {
+  text-align: center;
+  padding: var(--spacing-md);
+  background: var(--color-bg-tertiary);
+  border-radius: var(--border-radius);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all var(--transition-fast);
+}
+
+.github-stat:hover {
+  background: var(--color-bg-primary);
+  border-color: var(--color-accent-glow);
+}
+
+.github-stat-value {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-accent);
+  margin-bottom: 0.25rem;
+}
+
+.github-stat-label {
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.github-profile-link {
+  text-align: center;
+}
+
+.github-profile-link .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Activity Timeline */
+.activity-timeline {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.activity-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all var(--transition-fast);
+}
+
+.activity-item:last-child {
+  border-bottom: none;
+}
+
+.activity-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: var(--border-radius);
+}
+
+.activity-icon {
+  width: 24px;
+  height: 24px;
+  color: var(--color-accent);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.activity-content {
+  flex: 1;
+}
+
+.activity-title {
+  color: var(--color-text-primary);
+  font-weight: var(--font-weight-medium);
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+}
+
+.activity-repo {
+  color: var(--color-accent);
+  font-size: 0.85rem;
+  margin-bottom: 0.25rem;
+}
+
+.activity-time {
+  color: var(--color-text-secondary);
+  font-size: 0.8rem;
+}
+
+/* Languages Chart */
+.language-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm);
+}
+
+.language-color {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.language-info {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.language-name {
+  color: var(--color-text-primary);
+  font-weight: var(--font-weight-medium);
+  font-size: 0.9rem;
+}
+
+.language-percentage {
+  color: var(--color-text-secondary);
+  font-size: 0.85rem;
+}
+
+.language-bar {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-top: 0.25rem;
+}
+
+.language-progress {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 1s ease-in-out;
+}
+
+/* Loading States */
+.activity-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-xl);
+  color: var(--color-text-secondary);
+  text-align: center;
+}
+
+.loading-spinner {
+  margin-bottom: var(--spacing-md);
+  color: var(--color-accent);
+}
+
+.activity-loading p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* Error States */
+.github-error {
+  text-align: center;
+  padding: var(--spacing-xl);
+  color: var(--color-text-secondary);
+}
+
+.github-error-icon {
+  width: 48px;
+  height: 48px;
+  color: rgba(255, 99, 99, 0.8);
+  margin-bottom: var(--spacing-md);
+}
+
+/* Mobile Responsive */
+@media (max-width: 1024px) {
+  .github-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-lg);
+  }
+  
+  .github-languages {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 768px) {
+  .github-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+  
+  .github-overview,
+  .github-activity,
+  .github-languages {
+    padding: var(--spacing-lg);
+  }
+  
+  .github-stats-grid {
+    gap: var(--spacing-sm);
+  }
+  
+  .github-stat {
+    padding: var(--spacing-sm);
+  }
+  
+  .github-stat-value {
+    font-size: 1.25rem;
+  }
+  
+  .activity-timeline {
+    max-height: 300px;
+  }
+  
+  .activity-item {
+    padding: var(--spacing-sm);
+    gap: var(--spacing-sm);
+  }
+  
+  .activity-title {
+    font-size: 0.85rem;
+  }
+  
+  .activity-repo {
+    font-size: 0.8rem;
+  }
+  
+  .activity-time {
+    font-size: 0.75rem;
+  }
+  
+  .language-item {
+    gap: var(--spacing-xs);
+  }
+  
+  .language-name {
+    font-size: 0.85rem;
+  }
+  
+  .language-percentage {
+    font-size: 0.8rem;
   }
 }
 
@@ -1289,5 +1648,195 @@ section {
     flex-direction: column;
     align-items: flex-start;
     gap: var(--spacing-sm);
+  }
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-container {
+  background: var(--color-bg-secondary);
+  border-radius: var(--border-radius-lg);
+  max-width: 90vw;
+  max-height: 90vh;
+  width: 800px;
+  position: relative;
+  transform: scale(0.9) translateY(20px);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+
+.modal-overlay.active .modal-container {
+  transform: scale(1) translateY(0);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--color-bg-tertiary);
+}
+
+.modal-title {
+  font-size: 1.5rem;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: var(--border-radius);
+  transition: all var(--transition-fast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-close:hover {
+  color: var(--color-text-primary);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.modal-content {
+  padding: 2rem;
+  max-height: calc(90vh - 120px);
+  overflow-y: auto;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+.modal-content h3 {
+  color: var(--color-text-primary);
+  font-weight: var(--font-weight-semibold);
+  margin: 1.5rem 0 1rem 0;
+  font-size: 1.25rem;
+}
+
+.modal-content h4 {
+  color: var(--color-accent);
+  font-weight: var(--font-weight-medium);
+  margin: 1.25rem 0 0.75rem 0;
+  font-size: 1.1rem;
+}
+
+.modal-content p {
+  margin-bottom: 1rem;
+}
+
+.modal-content ul {
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+}
+
+.modal-content li {
+  margin-bottom: 0.5rem;
+}
+
+.case-study-section {
+  margin-bottom: 2rem;
+}
+
+.case-study-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: var(--color-bg-tertiary);
+  border-radius: var(--border-radius);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.case-study-metric {
+  text-align: center;
+}
+
+.case-study-metric-value {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-accent);
+  margin-bottom: 0.25rem;
+}
+
+.case-study-metric-label {
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.challenge-solution {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin: 1.5rem 0;
+}
+
+.challenge, .solution {
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.challenge {
+  background: rgba(255, 99, 99, 0.1);
+  border-color: rgba(255, 99, 99, 0.3);
+}
+
+.solution {
+  background: rgba(99, 255, 99, 0.1);
+  border-color: rgba(99, 255, 99, 0.3);
+}
+
+@media (max-width: 768px) {
+  .modal-container {
+    margin: 1rem;
+    max-width: calc(100vw - 2rem);
+  }
+  
+  .modal-header {
+    padding: 1rem 1.5rem;
+  }
+  
+  .modal-content {
+    padding: 1.5rem;
+  }
+  
+  .challenge-solution {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .case-study-metrics {
+    grid-template-columns: 1fr 1fr;
   }
 }

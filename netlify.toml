@@ -1,0 +1,91 @@
+[build]
+  publish = "."
+  
+  # Build command to run validation and optimization
+  command = "python3 validate_features.py && python3 security_audit.py && echo 'Build validation complete'"
+
+[build.environment]
+  NODE_VERSION = "18"
+  PYTHON_VERSION = "3.9"
+
+# Headers for enhanced security
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # Security headers
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    
+    # Content Security Policy
+    Content-Security-Policy = '''
+      default-src 'self';
+      script-src 'self' 'unsafe-inline' https://api.github.com;
+      style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+      font-src 'self' https://fonts.gstatic.com;
+      img-src 'self' data: https:;
+      connect-src 'self' https://api.github.com;
+      frame-ancestors 'none';
+      base-uri 'self';
+      form-action 'self';
+    '''
+
+# Cache optimization
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Redirects for clean URLs and SPA routing
+[[redirects]]
+  from = "/portfolio"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/resume"
+  to = "/#contact"
+  status = 302
+
+# Error pages
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Deploy previews configuration
+[context.deploy-preview]
+  command = "python3 validate_features.py && echo 'Preview validation complete'"
+
+[context.branch-deploy]
+  command = "python3 validate_features.py && echo 'Branch deploy validation complete'"
+
+# Form handling (for contact form)
+[build.processing]
+  skip_processing = false
+
+[build.processing.css]
+  bundle = true
+  minify = true
+
+[build.processing.js]
+  bundle = false
+  minify = true
+
+[build.processing.html]
+  pretty_urls = true
+
+[build.processing.images]
+  compress = true

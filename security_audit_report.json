@@ -1,0 +1,36 @@
+{
+  "html_security": {
+    "status": "success",
+    "issues": [],
+    "warnings": [
+      "Consider adding Content-Security-Policy meta tag for enhanced security",
+      "Consider adding X-Frame-Options meta tag for enhanced security",
+      "Consider adding X-Content-Type-Options meta tag for enhanced security"
+    ],
+    "checks_passed": 4,
+    "total_checks": 7
+  },
+  "javascript_security": {
+    "status": "success",
+    "issues": [],
+    "warnings": [],
+    "checks_passed": 7,
+    "total_checks": 7
+  },
+  "content_security": {
+    "status": "success",
+    "issues": [],
+    "warnings": [
+      "Found 3 plain text email addresses - consider using contact forms"
+    ],
+    "checks_passed": 3,
+    "total_checks": 4
+  },
+  "file_permissions": {
+    "status": "success",
+    "issues": [],
+    "warnings": [],
+    "checks_passed": 3,
+    "total_checks": 3
+  }
+}

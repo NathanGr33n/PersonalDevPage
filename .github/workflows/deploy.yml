@@ -1,0 +1,112 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+    
+    - name: Validate HTML
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y html5validator
+        html5validator --root . --ignore-re '.*test_features\.html.*' --also-check-css
+    
+    - name: Run Security Audit
+      run: |
+        python3 security_audit.py
+        # Ensure no critical security issues
+        if python3 -c "import json; report = json.load(open('security_audit_report.json')); issues = sum(len(r.get('issues', [])) for r in report.values()); exit(1 if issues > 0 else 0)"; then
+          echo "✅ Security audit passed"
+        else
+          echo "❌ Critical security issues found"
+          exit 1
+        fi
+    
+    - name: Run Feature Validation
+      run: |
+        python3 validate_features.py
+        # Ensure all features are working
+        if python3 -c "import json; report = json.load(open('validation_report.json')); failed = sum(1 for r in report.values() if r['status'] != 'success'); exit(1 if failed > 0 else 0)"; then
+          echo "✅ Feature validation passed"
+        else
+          echo "❌ Feature validation failed"
+          exit 1
+        fi
+    
+    - name: Optimize Assets
+      run: |
+        # Clean up temporary files
+        rm -f test_features.html
+        rm -f validation_report.json
+        rm -f security_audit_report.json
+        
+        # Verify all required files exist
+        test -f index.html || exit 1
+        test -f styles.css || exit 1
+        test -f script.js || exit 1
+        test -f favicon.ico || exit 1
+        
+        echo "✅ Asset optimization complete"
+    
+    - name: Setup Pages
+      uses: actions/configure-pages@v4
+    
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: '.'
+    
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4
+
+# Separate job for security monitoring
+  security-check:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    
+    - name: Security Scan
+      run: |
+        echo "🔒 Running comprehensive security scan..."
+        
+        # Check for sensitive data
+        if grep -r -i "password\|api_key\|secret\|token" --exclude-dir=.git --exclude="*.md" . | grep -v "placeholder\|example\|template"; then
+          echo "❌ Potential sensitive data found"
+          exit 1
+        fi
+        
+        # Check for dangerous patterns
+        if grep -r "eval\|innerHTML.*input\|document.write" --include="*.js" --include="*.html" .; then
+          echo "❌ Potentially dangerous code patterns found"
+          exit 1
+        fi
+        
+        echo "✅ Security scan passed"
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: false

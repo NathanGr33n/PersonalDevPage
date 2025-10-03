@@ -1,25 +1,36 @@
 {
-    "name": "Nathan Green - Software Engineer",
-    "short_name": "Nathan Green",
-    "description": "Software Engineer specializing in modern, scalable applications",
-    "icons": [
-        {
-            "src": "assets/android-chrome-192x192.png",
-            "sizes": "192x192",
-            "type": "image/png"
-        },
-        {
-            "src": "assets/android-chrome-512x512.png",
-            "sizes": "512x512",
-            "type": "image/png"
-        }
-    ],
-    "theme_color": "#6366f1",
-    "background_color": "#0a0a0a",
-    "display": "standalone",
-    "orientation": "portrait",
-    "start_url": "/",
-    "scope": "/",
-    "lang": "en-US",
-    "categories": ["portfolio", "professional", "developer"]
+  "name": "Nathan Green - Software Engineer",
+  "short_name": "Nathan Green",
+  "description": "Software Engineer specializing in modern, scalable applications",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f0f0f",
+  "theme_color": "#6366f1",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "assets/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ],
+  "categories": [
+    "portfolio",
+    "professional",
+    "software"
+  ],
+  "lang": "en-US",
+  "dir": "ltr"
 }

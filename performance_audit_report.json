@@ -1,0 +1,350 @@
+{
+  "file_analysis": {
+    "status": "success",
+    "issues": [],
+    "recommendations": [],
+    "total_size": 1499985,
+    "compressed_savings": 214260,
+    "files_analyzed": 40,
+    "file_breakdown": {
+      "html": [
+        {
+          "name": "index.html",
+          "path": ".\\index.html",
+          "size": 53400,
+          "size_kb": 52.15,
+          "compressed_size": 9927,
+          "compression_ratio": 0.186,
+          "savings": 43473
+        },
+        {
+          "name": "test_features.html",
+          "path": ".\\test_features.html",
+          "size": 20396,
+          "size_kb": 19.92,
+          "compressed_size": 4757,
+          "compression_ratio": 0.233,
+          "savings": 15639
+        }
+      ],
+      "css": [
+        {
+          "name": "styles.css",
+          "path": ".\\styles.css",
+          "size": 37372,
+          "size_kb": 36.5,
+          "compressed_size": 5962,
+          "compression_ratio": 0.16,
+          "savings": 31410
+        },
+        {
+          "name": "styles.min.css",
+          "path": ".\\styles.min.css",
+          "size": 31527,
+          "size_kb": 30.79,
+          "compressed_size": 5134,
+          "compression_ratio": 0.163,
+          "savings": 26393
+        }
+      ],
+      "js": [
+        {
+          "name": "analytics.js",
+          "path": ".\\analytics.js",
+          "size": 6304,
+          "size_kb": 6.16,
+          "compressed_size": 1718,
+          "compression_ratio": 0.273,
+          "savings": 4586
+        },
+        {
+          "name": "script.js",
+          "path": ".\\script.js",
+          "size": 72318,
+          "size_kb": 70.62,
+          "compressed_size": 14406,
+          "compression_ratio": 0.199,
+          "savings": 57912
+        },
+        {
+          "name": "script.min.js",
+          "path": ".\\script.min.js",
+          "size": 41454,
+          "size_kb": 40.48,
+          "compressed_size": 11131,
+          "compression_ratio": 0.269,
+          "savings": 30323
+        },
+        {
+          "name": "sw.js",
+          "path": ".\\sw.js",
+          "size": 6418,
+          "size_kb": 6.27,
+          "compressed_size": 1894,
+          "compression_ratio": 0.295,
+          "savings": 4524
+        }
+      ],
+      "images": [
+        {
+          "name": "favicon.ico",
+          "path": ".\\favicon.ico",
+          "size": 3126,
+          "size_kb": 3.05
+        },
+        {
+          "name": "android-chrome-192x192.png",
+          "path": ".\\assets\\android-chrome-192x192.png",
+          "size": 74587,
+          "size_kb": 72.84
+        },
+        {
+          "name": "android-chrome-512x512.png",
+          "path": ".\\assets\\android-chrome-512x512.png",
+          "size": 349800,
+          "size_kb": 341.6
+        },
+        {
+          "name": "apple-touch-icon.png",
+          "path": ".\\assets\\apple-touch-icon.png",
+          "size": 66347,
+          "size_kb": 64.79
+        },
+        {
+          "name": "favicon-128x128.png",
+          "path": ".\\assets\\favicon-128x128.png",
+          "size": 35359,
+          "size_kb": 34.53
+        },
+        {
+          "name": "favicon-16x16.png",
+          "path": ".\\assets\\favicon-16x16.png",
+          "size": 792,
+          "size_kb": 0.77
+        },
+        {
+          "name": "favicon-32x32.png",
+          "path": ".\\assets\\favicon-32x32.png",
+          "size": 2693,
+          "size_kb": 2.63
+        },
+        {
+          "name": "favicon-48x48.png",
+          "path": ".\\assets\\favicon-48x48.png",
+          "size": 5698,
+          "size_kb": 5.56
+        },
+        {
+          "name": "favicon-64x64.png",
+          "path": ".\\assets\\favicon-64x64.png",
+          "size": 9741,
+          "size_kb": 9.51
+        },
+        {
+          "name": "profile-avatar.svg",
+          "path": ".\\assets\\profile-avatar.svg",
+          "size": 1099,
+          "size_kb": 1.07
+        },
+        {
+          "name": "profile_avatar.JPG",
+          "path": ".\\assets\\profile_avatar.JPG",
+          "size": 495552,
+          "size_kb": 483.94
+        },
+        {
+          "name": "profile_avatar_150.webp",
+          "path": ".\\assets\\profile_avatar_150.webp",
+          "size": 6118,
+          "size_kb": 5.97
+        },
+        {
+          "name": "profile_avatar_250.jpg",
+          "path": ".\\assets\\profile_avatar_250.jpg",
+          "size": 18093,
+          "size_kb": 17.67
+        },
+        {
+          "name": "profile_avatar_250.webp",
+          "path": ".\\assets\\profile_avatar_250.webp",
+          "size": 15746,
+          "size_kb": 15.38
+        },
+        {
+          "name": "profile_avatar_400.webp",
+          "path": ".\\assets\\profile_avatar_400.webp",
+          "size": 36744,
+          "size_kb": 35.88
+        }
+      ],
+      "fonts": [],
+      "other": [
+        {
+          "name": "CUSTOMIZE_GUIDE.md",
+          "path": ".\\CUSTOMIZE_GUIDE.md",
+          "size": 10349,
+          "size_kb": 10.11
+        },
+        {
+          "name": "DEPLOYMENT_GUIDE.md",
+          "path": ".\\DEPLOYMENT_GUIDE.md",
+          "size": 7046,
+          "size_kb": 6.88
+        },
+        {
+          "name": "LICENSE",
+          "path": ".\\LICENSE",
+          "size": 1085,
+          "size_kb": 1.06
+        },
+        {
+          "name": "netlify.toml",
+          "path": ".\\netlify.toml",
+          "size": 2254,
+          "size_kb": 2.2
+        },
+        {
+          "name": "optimize_performance.py",
+          "path": ".\\optimize_performance.py",
+          "size": 13389,
+          "size_kb": 13.08
+        },
+        {
+          "name": "performance_audit.py",
+          "path": ".\\performance_audit.py",
+          "size": 23741,
+          "size_kb": 23.18
+        },
+        {
+          "name": "performance_audit_report.json",
+          "path": ".\\performance_audit_report.json",
+          "size": 8138,
+          "size_kb": 7.95
+        },
+        {
+          "name": "performance_optimization_report.json",
+          "path": ".\\performance_optimization_report.json",
+          "size": 989,
+          "size_kb": 0.97
+        },
+        {
+          "name": "README.md",
+          "path": ".\\README.md",
+          "size": 1475,
+          "size_kb": 1.44
+        },
+        {
+          "name": "security_audit.py",
+          "path": ".\\security_audit.py",
+          "size": 15419,
+          "size_kb": 15.06
+        },
+        {
+          "name": "security_audit_report.json",
+          "path": ".\\security_audit_report.json",
+          "size": 903,
+          "size_kb": 0.88
+        },
+        {
+          "name": "site.webmanifest",
+          "path": ".\\site.webmanifest",
+          "size": 876,
+          "size_kb": 0.86
+        },
+        {
+          "name": "TESTING_CHECKLIST.md",
+          "path": ".\\TESTING_CHECKLIST.md",
+          "size": 5043,
+          "size_kb": 4.92
+        },
+        {
+          "name": "validate_features.py",
+          "path": ".\\validate_features.py",
+          "size": 13510,
+          "size_kb": 13.19
+        },
+        {
+          "name": "validation_report.json",
+          "path": ".\\validation_report.json",
+          "size": 909,
+          "size_kb": 0.89
+        },
+        {
+          "name": "vercel.json",
+          "path": ".\\vercel.json",
+          "size": 2340,
+          "size_kb": 2.29
+        },
+        {
+          "name": "README.md",
+          "path": ".\\assets\\README.md",
+          "size": 1835,
+          "size_kb": 1.79
+        }
+      ]
+    },
+    "total_size_mb": 1.43,
+    "compressed_savings_kb": 209.24
+  },
+  "html_performance": {
+    "status": "success",
+    "issues": [],
+    "recommendations": [
+      "Found 6 render-blocking resources",
+      "Consider inlining critical CSS for faster initial render"
+    ],
+    "metrics": {
+      "total_requests": 7,
+      "blocking_resources": 6,
+      "render_blocking_css": 4,
+      "render_blocking_js": 2,
+      "images_without_alt": 0,
+      "images_without_dimensions": 0
+    }
+  },
+  "css_performance": {
+    "status": "success",
+    "issues": [],
+    "recommendations": [
+      "Remove CSS comments to reduce file size"
+    ],
+    "metrics": {
+      "total_rules": 266,
+      "unused_selectors": 0,
+      "redundant_properties": 0,
+      "large_files": 0,
+      "minification_savings": 2716
+    }
+  },
+  "js_performance": {
+    "status": "success",
+    "issues": [],
+    "recommendations": [
+      "Consider caching DOM queries for better performance",
+      "JavaScript minification could save ~22.5KB"
+    ],
+    "metrics": {
+      "total_functions": 70,
+      "event_listeners": 31,
+      "dom_queries": 62,
+      "async_operations": 13,
+      "minification_savings": 23048
+    }
+  },
+  "image_optimization": {
+    "status": "success",
+    "issues": [],
+    "recommendations": [
+      "Consider converting more images to WebP format for better compression",
+      "Consider optimizing 4 images"
+    ],
+    "metrics": {
+      "total_images": 14,
+      "total_size": 1118369,
+      "webp_images": 3,
+      "large_images": 0,
+      "unoptimized_images": 4,
+      "total_size_mb": 1.07
+    }
+  }
+}

@@ -59,10 +59,31 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Nathan Green">
     
+    <!-- Performance Optimizations -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://api.github.com">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="dns-prefetch" href="https://api.github.com">
+    
+    <!-- Critical CSS - Inline for faster rendering -->
+    <style>
+        /* Critical CSS for above-the-fold content */
+        body{margin:0;padding:0;font-family:'Inter',sans-serif;background-color:#0f0f0f;color:#e0e0e0;line-height:1.6;overflow-x:hidden}
+        .nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(15,15,15,0.95);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,0.1);transition:all 0.3s ease}
+        .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#0f0f0f 0%,#1a1a1a 100%)}
+        .hero-name{font-size:clamp(2.5rem,5vw,4rem);font-weight:700;margin-bottom:1rem;background:linear-gradient(135deg,#6366f1,#8b5cf6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .fade-in{opacity:0;transform:translateY(20px);animation:fadeInUp 1s ease forwards}
+        @keyframes fadeInUp{to{opacity:1;transform:translateY(0)}}
+    </style>
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"></noscript>
+    <link rel="preload" href="assets/profile_avatar_250.webp" as="image">
+    <link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="styles.css"></noscript>
 </head>
 <body>
     <!-- Navigation -->
@@ -146,7 +167,9 @@
                              class="profile-img"
                              width="250" 
                              height="250"
-                             loading="lazy">
+                             loading="lazy"
+                             decoding="async"
+                             fetchpriority="low">
                     </picture>
                 </div>
             </div>
@@ -840,9 +863,37 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <!-- Load scripts with defer for better performance -->
+    <script src="script.js" defer></script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+        // Register service worker for caching and offline functionality
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(function(registration) {
+                        console.log('SW: Service Worker registered successfully:', registration.scope);
+                        
+                        // Check for updates
+                        registration.addEventListener('updatefound', function() {
+                            const newWorker = registration.installing;
+                            newWorker.addEventListener('statechange', function() {
+                                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                    console.log('SW: New version available, please refresh.');
+                                    // Could show update notification to user
+                                }
+                            });
+                        });
+                    })
+                    .catch(function(error) {
+                        console.log('SW: Service Worker registration failed:', error);
+                    });
+            });
+        }
+    </script>
     
     <!-- Analytics (disabled by default - edit analytics.js to enable) -->
-    <script src="analytics.js"></script>
+    <script src="analytics.js" defer></script>
 </body>
 </html>
